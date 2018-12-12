@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+//bintray-release 插件 把库上传到jcenter的相关配置
+apply plugin: 'com.novoda.bintray-release'
+
 
 android {
     compileSdkVersion 27
@@ -9,7 +12,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "0.8.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -20,6 +23,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    //忽略代码不符合规范，导致lint检查时报错，中断整个编译过程。
+    lintOptions {
+        abortOnError false
     }
 
 }
@@ -34,7 +41,18 @@ dependencies {
 
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     api 'io.reactivex:rxandroid:1.2.1'
 
+}
+
+
+//bintray-release 插件 把库上传到jcenter的相关配置。
+publish {
+    userOrg = 'yinzihaoos'//bintray.com用户名
+    groupId = 'com.yinzihao'//jcenter上的路径
+    artifactId = 'HammerMVP'//项目名称
+    publishVersion = '0.8.0'//版本号
+    desc = '一个 android MVP 框架'//描述，不重要
+    website = 'https://github.com/YinZiHao1994/HammerMVP'//网站，不重要；尽量模拟github上的地址
 }

@@ -1,5 +1,8 @@
 package com.source.yin.hammermvp.mvp.configuration;
 
+/**
+ * 全局配置信息类，在项目的{@link android.app.Application}中初始化
+ */
 public class GlobalConfiguration {
 
     private static InternetConfiguration internetConfiguration;
